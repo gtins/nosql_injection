@@ -3,14 +3,15 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "name":"icaro botelho",
-  "email":"icaro@example.com",
+  "name":"gustavo",
+  "email":"gustavo@example.com",
   "password":"12345"
 }
 
 ###
 
-# Requisição GET para listar todos os usuários
-GET http://localhost:3000/users
+# Requisição GET para umn unico usuario
+GET http://localhost:3000/users?name=gustavo&email=gustavo@example.com
 
----
+### Exemplo de GET com nosql injection 
+GET http://localhost:3000/users?name[$ne]=
