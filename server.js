@@ -21,12 +21,11 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // Rotas da API
 
-// GET: Listar usuários (vulnerável a NoSQL Injection)
+// GET: Listar usuários filtrados
 app.get('/users', async (req, res) => {
-  const filter = req.query; // Diretamente usa os parâmetros de consulta fornecidos pelo usuário
+  const { name, email } = req.query; // Somente os campos permitidos
   try {
-    // Este código é vulnerável a NoSQL Injection, já que o filtro vem direto do usuário
-    const users = await User.find(filter);
+    const users = await User.find({ name, email });
     res.status(200).json(users);
   } catch (err) {
     res.status(500).json({ message: err.message });
